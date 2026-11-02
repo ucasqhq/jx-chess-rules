@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>规则说明 · 见血封喉象棋</title>
+  <meta name="description" content="见血封喉象棋完整玩法说明：暗棋盲翻、棋子走法、组合棋、胜负判定、界面标记与联机流程。">
+  <meta name="theme-color" content="#140e09">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23a8322a'/%3E%3Ccircle cx='32' cy='32' r='21' fill='%23f2e3c4'/%3E%3Ctext x='32' y='42' font-size='26' text-anchor='middle' fill='%232b1d12' font-family='serif'%3E%E5%B8%85%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./rules/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+
+  <header class="topbar" id="topbar">
+    <div class="wrap topbar-in">
+      <a class="brand" href="#top" aria-label="见血封喉象棋 · 规则说明">
+        <span class="seal" aria-hidden="true">帅</span>
+        <span class="brand-text">
+          <b>见血封喉象棋</b>
+          <small>规则说明</small>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="章节导航">
+        <a href="#overview">规则概览</a>
+        <a href="#pieces">棋子走法</a>
+        <a href="#combo">组合棋</a>
+        <a href="#online">联机</a>
+        <a href="#notes">注意事项</a>
+      </nav>
+
+      <div class="top-actions">
+        <a class="btn btn-primary btn-sm" href="https://jx-chess-jx-chess-d8gj6n3fu65dc45db.webapps.tcloudbase.com/" data-play>开始对弈</a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="打开章节导航">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+  </header>
+
+  <main id="main">
+    <!-- ==================== 头图 ==================== -->
+    <section class="hero wrap" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow"><span aria-hidden="true"></span>RULES · 玩法与规则</p>
+        <h1>半盘未知，<br><em>一子封喉。</em></h1>
+        <p class="lede">除将帅之外，每方十五枚棋子背面朝上。翻棋、走子、叠成组合——在信息不全的棋盘上，谁先看清局势，谁就握住杀招。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="https://jx-chess-jx-chess-d8gj6n3fu65dc45db.webapps.tcloudbase.com/" data-play>进入棋馆 <span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#overview">从头读规则</a>
+        </div>
+        <ul class="hero-meta">
+          <li><b>9 × 10</b><span>棋盘交点</span></li>
+          <li><b>15</b><span>每方暗棋</span></li>
+          <li><b>60 秒</b><span>每步限时</span></li>
+        </ul>
+      </div>
+
+      <figure class="hero-shot">
+        <button class="shot" type="button" data-zoom data-caption="本地双人对弈 · 桌面端实机画面">
+          <img src="./rules/img/hero.jpg" width="1440" height="900" alt="见血封喉象棋本地对局：棋盘上有已翻开的红黑棋子，右侧是玩家信息与操作面板" fetchpriority="high" decoding="async">
+          <span class="shot-hint">点击放大</span>
+        </button>
+        <figcaption>本地双人对弈 · 桌面端实机画面</figcaption>
+      </figure>
+    </section>
+
+    <!-- ==================== 01 规则概览 ==================== -->
+    <section class="section wrap" id="overview">
+      <header class="sec-head reveal">
+        <p class="sec-kicker"><span>01</span>OVERVIEW</p>
+        <h2>规则概览</h2>
+        <p class="sec-sub">四句话看懂这盘棋。下面每一节都会展开说明。</p>
+      </header>
+
+      <div class="grid-4">
+        <article class="card reveal" style="--i:0">
+          <p class="card-num">01</p>
+          <h3>盲翻暗棋</h3>
+          <p>每方十五枚暗棋背面朝上。翻开之前，连执子的一方也不知道它是什么。</p>
+        </article>
+        <article class="card reveal" style="--i:1">
+          <p class="card-num">02</p>
+          <h3>落子成组</h3>
+          <p>把棋子落到己方棋子上，两枚叠成一枚。走法、吃子与风险一起合并。</p>
+        </article>
+        <article class="card reveal" style="--i:2">
+          <p class="card-num">03</p>
+          <h3>擒王取胜</h3>
+          <p>吃将、将死、困毙，三种方式结束对局。将帅在组合棋里同样会被吃。</p>
+        </article>
+        <article class="card reveal" style="--i:3">
+          <p class="card-num">04</p>
+          <h3>限时对局</h3>
+          <p>联机每步 60 秒，求和回应 15 秒。超时、断线超过宽限都判负。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== 02 棋盘与开局 ==================== -->
+    <section class="section wrap" id="board">
+      <header class="sec-head reveal">
+        <p class="sec-kicker"><span>02</span>SETUP</p>
+        <h2>棋盘与开局</h2>
+        <p class="sec-sub">骨架仍是中国象棋，变化从「看不见的棋子」开始。</p>
+      </header>
+
+      <div class="split">
+        <div class="prose reveal">
+          <ul class="ticks">
+            <li><b>棋盘 9 列 × 10 行</b>，棋子落在交点上，中间以楚河汉界分开。</li>
+            <li><b>红方在下、黑方在上</b>，红先。执红的一方先走，与谁是房主无关。</li>
+            <li><b>将 / 帅是唯一的明棋</b>，摆在九宫底线正中。</li>
+            <li><b>其余 15 枚暗棋各自独立打乱</b>，随机落在自己的初始位置。</li>
+            <li><b>翻开之前，双方都看不到种类</b>——包括持有它的一方。</li>
+          </ul>
+          <p class="callout"><b>联机时红黑随机分配。</b>棋盘会自动翻转，你的一方始终在下方；本地双人则固定红下黑上，两人共看一块屏幕。</p>
+        </div>
+
+        <figure class="shot-card reveal" style="--i:1">
+          <button class="shot" type="button" data-zoom data-caption="开局摆法：将帅明置，其余 15 枚暗棋随机">
+            <img src="./rules/img/opening.jpg" width="520" height="575" alt="开局摆法示意：红黑双方车马象士将士象马车按标准位置排列，只有将帅正面朝上，其余棋子均为背面" loading="lazy" decoding="async">
+            <span class="shot-hint">点击放大</span>
+          </button>
+          <figcaption>开局摆法 · 将帅明置，其余暗棋随机</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ==================== 03 一回合能做什么 ==================== -->
+    <section class="section wrap" id="turn">
+      <header class="sec-head reveal">
+        <p class="sec-kicker"><span>03</span>YOUR TURN</p>
+        <h2>一回合能做什么</h2>
+        <p class="sec-sub">每回合三选一，做完即换手。翻棋同样计作一步。</p>
+      </header>
+
+      <div class="steps">
+        <article class="step reveal" style="--i:0">
+          <p class="step-no">01</p>
+          <h3>翻一枚己方暗棋</h3>
+          <p>点一次选中，再点同一枚翻开。只能翻自己的暗棋，翻完换对方走。</p>
+        </article>
+        <article class="step reveal" style="--i:1">
+          <p class="step-no">02</p>
+          <h3>走一步明棋</h3>
+          <p>移动到空点，或吃掉对方的明棋。走完换手。</p>
+        </article>
+        <article class="step reveal" style="--i:2">
+          <p class="step-no">03</p>
+          <h3>落到己方棋上</h3>
+          <p>叠成组合棋。组合后的走法、限制与吃子，见「组合棋」一节。</p>
+        </article>
+      </div>
+
+      <p class="callout reveal">暗棋不能移动、不能被吃，也不能作为落点。被将军时不能翻棋——翻棋不改变局面，解不了将。</p>
+    </section>
+
+    <!-- ==================== 04 棋子走法 ==================== -->
+    <section class="section wrap" id="pieces">
+      <header class="sec-head reveal">
+        <p class="sec-kicker"><span>04</span>HOW PIECES MOVE</p>
+        <h2>棋子怎么走</h2>
+        <p class="sec-sub">基础走法沿用中国象棋，但有三处关键放宽：士、象可以过河，炮架可以是暗棋。</p>
+      </header>
+
+      <div class="table-card reveal">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">棋子</th>
+                <th scope="col">走法</th>
+                <th scope="col">本作的不同</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><span class="piece-name"><span class="piece-chip" aria-hidden="true">车</span><span>车</span></span></th>
+                <td data-label="走法">横竖任意格，不越子。</td>
+                <td data-label="本作差异">与常见规则相同。</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="piece-name"><span class="piece-chip" aria-hidden="true">马</span><span>马</span></span></th>
+                <td data-label="走法">走「日」字，蹩马腿。</td>
+                <td data-label="本作差异">与常见规则相同。</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="piece-name"><span class="piece-chip" aria-hidden="true">炮</span><span>炮</span></span></th>
+                <td data-label="走法">移动同车；吃子必须隔恰好一枚炮架。</td>
+                <td data-label="本作差异"><b>炮架可以是暗棋。</b></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="piece-name"><span class="piece-chip" aria-hidden="true">相</span><span>象 / 相</span></span></th>
+                <td data-label="走法">走「田」字，塞象眼。</td>
+                <td data-label="本作差异"><b>可以过河。</b></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="piece-name"><span class="piece-chip" aria-hidden="true">仕</span><span>士 / 仕</span></span></th>
+                <td data-label="走法">斜走一格。</td>
+                <td data-label="本作差异"><b>可以出九宫、可以过河。</b></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="piece-name"><span class="piece-chip" aria-hidden="true">帅</span><span>将 / 帅</span></span></th>
+                <td data-label="走法">九宫内直走一格。</td>
+                <td data-label="本作差异">不得出九宫；将帅不可照面。</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="piece-name"><span class="piece-chip" aria-hidden="true">兵</span><span>兵 / 卒</span></span></th>
+                <td data-label="走法">未过河只能向前一格；过河后可前进或左右平移。</td>
+                <td data-label="本作差异"><b>永不后退。</b></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="callout reveal"><b>白脸杀成立。</b>将帅不得在同一列且中间无子，任何造成照面的走法都非法。被将军时，所有走完仍被将军的着法一律非法，包括主动「送将」。</p>
+    </section>
+
+    <!-- ==================== 05 组合棋（纸面区） ==================== -->
+    <section class="section wrap" id="combo">
+      <div class="paper reveal">
+        <header class="sec-head on-paper">
+          <p class="sec-kicker"><span>05</span>COMBINATION</p>
+          <h2>组合棋</h2>
+          <p class="sec-sub">两枚棋子叠在一起，走法与吃子都按合并后的规则计算。这是这盘棋最核心的变化。</p>
+        </header>
+
+        <div class="combo-shots">
+          <figure>
+            <button class="shot" type="button" data-zoom data-caption="己方视角：暗成员可见，带朱砂虚线圈">
+              <img src="./rules/img/combo-own.jpg" width="340" height="376" alt="组合棋己方视角示意：红炮与红马叠放，暗成员红马带朱砂虚线圈，右上角角标显示马" loading="lazy" decoding="async">
+              <span class="shot-hint">点击放大</span>
+            </button>
+            <figcaption>己方视角 · 暗成员可见</figcaption>
+          </figure>
+          <figure>
+            <button class="shot" type="button" data-zoom data-caption="对方视角：暗成员只显示 ?">
+              <img src="./rules/img/combo-rival.jpg" width="340" height="376" alt="组合棋对方视角示意：红炮在上，被压住的暗成员显示为棋子背面，右上角角标为问号" loading="lazy" decoding="async">
+              <span class="shot-hint">点击放大</span>
+            </button>
+            <figcaption>对方视角 · 只显示「?」</figcaption>
+          </figure>
+        </div>
+        <p class="paper-note">示意图由游戏绘制层生成，用于说明叠放方式与信息差。</p>
+
+        <div class="combo-rules">
+          <div class="rule">
+            <b>怎么组合</b>
+            <p>把己方棋子落到己方棋子所在的点，相当于吃掉自己的子。</p>
+          </div>
+          <div class="rule">
+            <b>可以叠谁</b>
+            <p>己方暗棋或明棋都可以，形成「一明一暗」或「双明」。</p>
+          </div>
+          <div class="rule">
+            <b>最多两枚</b>
+            <p>不能叠加第三枚，也不能拆开只走其中一枚。</p>
+          </div>
+          <div class="rule">
+            <b>一明一暗</b>
+            <p>默认按明棋的走法；要用暗棋的走法，移动时一并亮出，不额外计步。</p>
+          </div>
+          <div class="rule">
+            <b>双明组合</b>
+            <p>走法是两枚棋子走法的并集，两种走法都能用。</p>
+          </div>
+          <div class="rule">
+            <b>九宫与兵</b>
+            <p>含将 / 帅的组合仍不得出九宫；双兵组合不能后退，兵与其他棋子组合后可以后退。</p>
+          </div>
+          <div class="rule">
+            <b>炮的组合</b>
+            <p>必须隔恰好一枚炮架，不能直接平移过去组合。</p>
+          </div>
+          <div class="rule">
+            <b>被吃即全灭</b>
+            <p>组合棋被吃时两枚一起消失；将帅在组合里被吃同样判负。</p>
+          </div>
+        </div>
+
+        <p class="paper-callout"><b>信息差只在一处：</b>组合棋里的暗成员，己方能看到具体字形并带一圈朱砂虚线；对方只看到「?」角标。单枚暗棋仍然对所有人都不可见。</p>
+      </div>
+    </section>
+
+    <!-- ==================== 06 胜负与和棋 ==================== -->
+    <section class="section wrap" id="result">
+      <header class="sec-head reveal">
+        <p class="sec-kicker"><span>06</span>WIN OR DRAW</p>
+        <h2>胜负与和棋</h2>
+        <p class="sec-sub">六种结束方式。除了吃将，其余都按「轮到谁、还能不能走」来判。</p>
+      </header>
+
+      <div class="grid-3">
+        <article class="result reveal" style="--i:0">
+          <b>吃将 / 帅</b>
+          <p>直接获胜。将帅在组合棋中被吃，同样算整局结束。</p>
+        </article>
+        <article class="result reveal" style="--i:1">
+          <b>将死</b>
+          <p>被将军，且没有任何合法着法可以解将，判负。</p>
+        </article>
+        <article class="result reveal" style="--i:2">
+          <b>困毙</b>
+          <p>没被将军，但无棋可走、也无暗棋可翻，判当前方负。</p>
+        </article>
+        <article class="result reveal" style="--i:3">
+          <b>认输</b>
+          <p>任意一方可发起，确认后立即结束，判对方获胜。</p>
+        </article>
+        <article class="result reveal" style="--i:4">
+          <b>求和</b>
+          <p>对方同意即和；15 秒未回应视为自动拒绝，对局继续。</p>
+        </article>
+        <article class="result reveal" style="--i:5">
+          <b>超时 / 断线</b>
+          <p>每步 60 秒，超时判负；断线宽限 60 秒，仍未回来判负。</p>
+        </article>
+      </div>
+
+      <p class="callout reveal">求和请求挂起期间，双方都不能走棋，必须先回应。这是为了避免局面与协商状态互相打架。</p>
+    </section>
+
+    <!-- ==================== 07 界面标记 ==================== -->
+    <section class="section wrap" id="marks">
+      <header class="sec-head reveal">
+        <p class="sec-kicker"><span>07</span>ON THE BOARD</p>
+        <h2>界面标记怎么看</h2>
+        <p class="sec-sub">选中一枚棋子后，棋盘会用三种颜色标出它可以做什么。</p>
+      </header>
+
+      <div class="split split-marks">
+        <figure class="shot-card reveal">
+          <button class="shot" type="button" data-zoom data-caption="三种落点标记：绿点可走、红圈吃子、蓝虚线圈组合">
+            <img src="./rules/img/markers.jpg" width="520" height="575" alt="棋盘标记示意：红车被选中，四个绿色实心点表示可走，两枚黑棋外的红圈表示可吃，红兵外的蓝色虚线圈表示可组合" loading="lazy" decoding="async">
+            <span class="shot-hint">点击放大</span>
+          </button>
+          <figcaption>落点标记 · 规则示意</figcaption>
+        </figure>
+
+        <div class="legend-wrap reveal" style="--i:1">
+          <ul class="legend-list">
+            <li class="legend-row">
+              <i class="swatch move" aria-hidden="true"></i>
+              <div><b>绿点 · 可走</b><p>棋子可以移动到的空点。</p></div>
+            </li>
+            <li class="legend-row">
+              <i class="swatch capture" aria-hidden="true"></i>
+              <div><b>红圈 · 吃子</b><p>可以吃掉的对方棋子，圆圈套在目标棋子上。</p></div>
+            </li>
+            <li class="legend-row">
+              <i class="swatch combo" aria-hidden="true"></i>
+              <div><b>蓝虚线圈 · 组合</b><p>可以落上去叠成组合棋的己方棋子。</p></div>
+            </li>
+          </ul>
+
+          <div class="legend-extra">
+            <p class="legend-extra-title">其他标记</p>
+            <ul class="ticks ticks-sm">
+              <li><b>金环</b>：当前选中的棋子。暗棋为虚线金环，提示再点一次翻开。</li>
+              <li><b>金色四角</b>：上一步的起点与终点。</li>
+              <li><b>朱砂断口环</b>：正在被将军的将 / 帅。</li>
+              <li><b>朱砂虚线圈</b>：组合棋中只有己方可见的暗成员。</li>
+            </ul>
+          </div>
+
+          <p class="callout callout-tight">颜色之外还有形状差异：实心点、实线环、虚线环。色觉差异或强光下也能分开。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 08 联机 ==================== -->
+    <section class="section wrap" id="online">
+      <header class="sec-head reveal">
+        <p class="sec-kicker"><span>08</span>ONLINE</p>
+        <h2>联机对战</h2>
+        <p class="sec-sub">不用注册。建房、发房号、入座，四步开局。</p>
+      </header>
+
+      <div class="split split-online">
+        <ol class="timeline reveal">
+          <li>
+            <span class="dot" aria-hidden="true">01</span>
+            <b>建房</b>
+            <p>输入昵称，创建房间，得到 6 位房号。</p>
+          </li>
+          <li>
+            <span class="dot" aria-hidden="true">02</span>
+            <b>等对手</b>
+            <p>等待页可一键复制房号。只有这个阶段能复制，开局后按钮会禁用。</p>
+          </li>
+          <li>
+            <span class="dot" aria-hidden="true">03</span>
+            <b>加入</b>
+            <p>对方输入房号加入。红黑随机分配，执黑时棋盘自动翻转。</p>
+          </li>
+          <li>
+            <span class="dot" aria-hidden="true">04</span>
+            <b>对局</b>
+            <p>每步 60 秒。断线自动重连，同一浏览器刷新可续连；再来一局需双方都确认。</p>
+          </li>
+        </ol>
+
+        <figure class="shot-card reveal" style="--i:1">
+          <button class="shot" type="button" data-zoom data-caption="联机对局 · 房号、双方昵称与在线状态">
+            <img src="./rules/img/online.jpg" width="1280" height="800" alt="联机对局实机画面：右侧面板显示六位房号、双方昵称与在线状态、当前回合倒计时和操作按钮" loading="lazy" decoding="async">
+            <span class="shot-hint">点击放大</span>
+          </button>
+          <figcaption>联机对局 · 房号、双方与回合状态</figcaption>
+        </figure>
+      </div>
+
+      <p class="callout reveal"><b>联机不提供悔棋。</b>对局中主动离开房间，判对方获胜；本地双人则可以无限次悔棋。</p>
+    </section>
+
+    <!-- ==================== 09 注意事项 ==================== -->
+    <section class="section wrap" id="notes">
+      <header class="sec-head reveal">
+        <p class="sec-kicker"><span>09</span>BEFORE YOU PLAY</p>
+        <h2>注意事项</h2>
+        <p class="sec-sub">几条容易踩坑、或与常规象棋不同的地方。</p>
+      </header>
+
+      <div class="notes reveal">
+        <ol>
+          <li><b>暗棋信息</b>：单枚暗棋对所有人都不可见，包括自己；只有组合棋里的暗成员，己方才看得到。</li>
+          <li><b>同屏双人</b>：两人共用一块屏幕，无法真正隐藏信息。想公平对战请用联机。</li>
+          <li><b>悔棋</b>：本地双人不限次数；联机模式不提供悔棋。</li>
+          <li><b>求和</b>：请求挂起期间不能走棋；15 秒不回应视为拒绝，对局继续。</li>
+          <li><b>超时</b>：联机每步 60 秒；断线有 60 秒宽限，宽限结束仍离线判负。</li>
+          <li><b>暂未判定</b>：长将、长捉、三次重复局面当前不判负，只记录步数。</li>
+          <li><b>炮架</b>：暗棋也可以当炮架，这是本作与常规象棋的一处差异。</li>
+          <li><b>刷新续连</b>：同一浏览器刷新可回到原房间；换设备或清空站点数据后无法续连。</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ==================== 行动号召 ==================== -->
+    <section class="cta wrap">
+      <div class="cta-inner reveal">
+        <p class="eyebrow"><span aria-hidden="true"></span>READY TO PLAY</p>
+        <h2>棋局已备，请入座。</h2>
+        <p>规则读到这里就够了。剩下的，在棋盘上见。</p>
+        <a class="btn btn-primary btn-lg" href="https://jx-chess-jx-chess-d8gj6n3fu65dc45db.webapps.tcloudbase.com/" data-play>进入棋馆 <span aria-hidden="true">→</span></a>
+        <p class="cta-note">桌面与手机浏览器均可 · 无需注册 · 支持本地双人与联机</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <p>见血封喉象棋 · 规则说明</p>
+      <p>
+        <a href="https://jx-chess-jx-chess-d8gj6n3fu65dc45db.webapps.tcloudbase.com/" data-play>返回游戏</a>
+        <span aria-hidden="true">·</span>
+        <a href="./font-license.txt">字体授权</a>
+        <span aria-hidden="true">·</span>
+        <span>© <span id="year">2026</span></span>
+      </p>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="查看大图">
+    <button class="lightbox-close" type="button" aria-label="关闭大图">×</button>
+    <img id="lightboxImg" alt="规则示意图">
+    <p class="lightbox-cap" id="lightboxCap"></p>
+  </dialog>
+
+  <button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
+
+  <script src="./rules/script.js" defer></script>
+</body>
+</html>
